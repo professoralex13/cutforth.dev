@@ -35,7 +35,8 @@ export default function Navbar() {
 		<header
 			className={clsx(
 				"fixed top-0 inset-x-0 z-50",
-				scrolled && "bg-background/95 backdrop-blur-sm border-b border-border",
+				(scrolled || menuOpen) &&
+					"bg-background/95 backdrop-blur-sm border-b border-border",
 			)}
 		>
 			<nav className="flex items-center justify-between max-w-5xl mx-auto h-14 px-6">
