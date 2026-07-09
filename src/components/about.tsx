@@ -1,7 +1,7 @@
 export default function About() {
 	return (
 		<section id="about" className="border-t border-border py-28 px-6">
-			<div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
+			<div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 slide-enter left">
 				<div>
 					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">
 						01

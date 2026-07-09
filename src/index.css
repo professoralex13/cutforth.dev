@@ -222,4 +222,28 @@
 	.grid-backdrop:hover::before {
 		opacity: 1;
 	}
+
+	.slide-enter {
+		@apply opacity-0 transition-all duration-500;
+	}
+
+	.slide-enter.left {
+		@apply -translate-x-12;
+	}
+
+	.slide-enter.right {
+		@apply translate-x-12;
+	}
+
+	.slide-enter.top {
+		@apply -translate-y-12;
+	}
+
+	.slide-enter.bottom {
+		@apply translate-y-12;
+	}
+
+	.slide-enter.animate {
+		@apply translate-0 opacity-100;
+	}
 }

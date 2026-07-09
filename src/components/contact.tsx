@@ -24,7 +24,7 @@ export default function Contact() {
 	return (
 		<section id="contact" className="py-28 px-6 border-t border-border">
 			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
-				<div>
+				<div className="slide-enter left">
 					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">
 						05
 					</p>
@@ -32,7 +32,7 @@ export default function Contact() {
 						Contact
 					</h2>
 				</div>
-				<div className="space-y-8">
+				<div className="space-y-8 slide-enter right">
 					<p className="text-muted-foreground font-[Figtree,sans-serif] text-lg leading-relaxed max-w-md">
 						Open to collaborations and conversations. Feel free to reach out via
 						email or find me on LinkedIn and GitHub.

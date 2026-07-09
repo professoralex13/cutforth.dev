@@ -67,38 +67,36 @@ export default function Skills() {
 			id="skills"
 			className="py-28 px-6 border-t border-border bg-secondary/30"
 		>
-			<div className="max-w-5xl mx-auto">
-				<div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
-					<div>
-						<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">
-							02
-						</p>
-						<h2 className="font-mono text-3xl font-bold text-foreground">
-							Skills
-						</h2>
-					</div>
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-						{SKILLS.map((group) => (
-							<div key={group.category} className="space-y-3">
-								<p className="font-mono text-xs text-primary tracking-widest uppercase">
-									{group.category}
-								</p>
-								<div className="flex flex-wrap gap-2">
-									{group.items.map((item) => (
-										<a
-											key={item.name}
-											href={item.link}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="font-mono text-xs bg-card border border-border text-foreground px-2.5 py-1 rounded hover:border-primary/50 hover:text-primary transition-colors"
-										>
-											{item.name}
-										</a>
-									))}
-								</div>
+			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 slide-enter right">
+				<div>
+					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">
+						02
+					</p>
+					<h2 className="font-mono text-3xl font-bold text-foreground">
+						Skills
+					</h2>
+				</div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					{SKILLS.map((group) => (
+						<div key={group.category} className="space-y-3">
+							<p className="font-mono text-xs text-primary tracking-widest uppercase">
+								{group.category}
+							</p>
+							<div className="flex flex-wrap gap-2">
+								{group.items.map((item) => (
+									<a
+										key={item.name}
+										href={item.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="font-mono text-xs bg-card border border-border text-foreground px-2.5 py-1 rounded hover:border-primary/50 hover:text-primary transition-colors"
+									>
+										{item.name}
+									</a>
+								))}
 							</div>
-						))}
-					</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>

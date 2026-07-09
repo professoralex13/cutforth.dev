@@ -46,7 +46,7 @@ export default function Projects() {
 			id="projects"
 			className="py-28 px-6 border-t border-border bg-secondary/30"
 		>
-			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
+			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 slide-enter bottom">
 				<div>
 					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">
 						04
