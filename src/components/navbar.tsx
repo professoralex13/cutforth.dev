@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useScrollSpy } from "../hooks/use-scroll-spy";
 import { GithubIcon } from "../icons/Github";
@@ -14,6 +15,8 @@ const NAV_LINKS = [
 
 export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
+
+	const [menuOpen, setMenuOpen] = useState(false);
 
 	const activeSection = useScrollSpy([
 		"hero",
@@ -47,7 +50,7 @@ export default function Navbar() {
 				>
 					cutforth.dev
 				</a>
-				<ul className="flex items-center gap-7">
+				<ul className="md:flex items-center gap-7 hidden">
 					{NAV_LINKS.map((link) => (
 						<li key={link.href}>
 							<a
@@ -64,7 +67,7 @@ export default function Navbar() {
 						</li>
 					))}
 				</ul>
-				<div className="flex items-center gap-7">
+				<div className="hidden md:flex items-center gap-7">
 					<a
 						href="https://github.com/professoralex13"
 						target="_blank"
@@ -84,7 +87,48 @@ export default function Navbar() {
 						<LinkedinIcon />
 					</a>
 				</div>
+				<button
+					type="button"
+					className="md:hidden text-muted-foreground hover:text-foreground"
+					onClick={() => setMenuOpen((v) => !v)}
+					aria-label="Toggle menu"
+				>
+					{menuOpen ? <X size={20} /> : <Menu size={20} />}
+				</button>
 			</nav>
+			{/* Hamburger Menu */}
+			{menuOpen && (
+				<div className="md:hidden bg-background/98 border-b border-border px-6 pb-5 pt-2 flex flex-col gap-3">
+					{NAV_LINKS.map((l) => (
+						<a
+							key={l.href}
+							href={l.href}
+							onClick={() => setMenuOpen(false)}
+							className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-1"
+						>
+							{l.label}
+						</a>
+					))}
+					<div className="flex gap-4 pt-2">
+						<a
+							href="https://github.com/professoralex13"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-muted-foreground hover:text-foreground"
+						>
+							<GithubIcon size={18} />
+						</a>
+						<a
+							href="https://www.linkedin.com/in/alex-cutforth-5133b4299/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-muted-foreground hover:text-foreground"
+						>
+							<LinkedinIcon size={18} />
+						</a>
+					</div>
+				</div>
+			)}
 		</header>
 	);
 }
