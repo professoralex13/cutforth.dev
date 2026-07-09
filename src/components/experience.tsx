@@ -4,7 +4,7 @@ const EXPERIENCE = [
 	{
 		position: "Software Developer",
 		company: "Navigraph",
-		link: "navigraph.com",
+		link: "https://navigraph.com",
 		skills: ["Rust", "TypeScript", "React", "PostGIS", "WebAssembly", "GIS"],
 		period: "December 2023 - Present",
 		description: `Remote position with a hybrid Stockholm team. Work spans
@@ -18,7 +18,7 @@ const EXPERIENCE = [
 	{
 		position: "Robotics Technician",
 		company: "Robomate",
-		link: "robomate.co.nz",
+		link: "https://robomate.co.nz",
 		skills: [
 			"Customer Interaction",
 			"Mechanical Diagnostics",
@@ -48,46 +48,57 @@ export default function Experience() {
 					{EXPERIENCE.map((experience, i) => (
 						<div
 							key={`${experience.company}/${experience.position}`}
-							className="grid grid-cols-[min-content_1fr]"
+							className="group grid grid-cols-[min-content_1fr]"
 						>
-							<div className="space-y-4.5 pr-3 pt-1.5">
+							<div className="space-y-6 pr-3 pt-4.5">
 								<div
 									className={clsx(
-										"size-3 rounded-full mx-auto",
+										"size-3 rounded-full mx-auto transition-all duration-300",
 										experience.ongoing
-											? "bg-primary"
-											: "border-3 border-border",
+											? "bg-primary group-hover:scale-110"
+											: "border-3 border-border group-hover:border-primary/80",
 									)}
 								/>
 								{i !== EXPERIENCE.length - 1 && (
-									<div className="w-1 rounded-full bg-border h-full mx-auto" />
+									<div className="w-1 rounded-full bg-border h-full mx-auto transition-colors duration-300 group-hover:bg-primary/35" />
 								)}
 							</div>
 							<div>
-								<div className="flex flex-wrap items-baseline gap-3 mb-1">
-									<h3 className="font-mono text-base font-semibold text-foreground">
-										{experience.position}
-									</h3>
-									<span className="font-mono text-xs text-primary">
-										{experience.company}
-									</span>
-									<span className="font-mono text-xs text-muted-foreground ml-auto">
-										{experience.period}
-									</span>
-								</div>
-								<p className="text-sm text-muted-foreground font-[Figtree,sans-serif] leading-relaxed">
-									{experience.description}
-								</p>
-								<div className="flex flex-wrap gap-2 mt-3">
-									{experience.skills.map((t) => (
-										<span
-											key={t}
-											className="font-mono text-xs bg-secondary border border-border px-2 py-0.5 rounded text-muted-foreground"
-										>
-											{t}
+								<a
+									href={experience.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`Visit ${experience.company} website`}
+									className="block rounded-xl border border-transparent px-4 py-3 transition-all duration-300 ease-out hover:border-primary/35 hover:bg-secondary/60 hover:shadow-[0_0_0_1px_rgba(82,221,180,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hover:translate-x-1"
+								>
+									<div className="flex flex-wrap items-baseline gap-3 mb-1">
+										<h3 className="font-mono text-base font-semibold text-foreground">
+											{experience.position}
+										</h3>
+										<span className="font-mono text-xs text-primary">
+											{experience.company}
 										</span>
-									))}
-								</div>
+										<span className="font-mono text-xs text-muted-foreground ml-auto">
+											{experience.period}
+										</span>
+									</div>
+									<p className="text-sm text-muted-foreground font-[Figtree,sans-serif] leading-relaxed">
+										{experience.description}
+									</p>
+									<div className="flex flex-wrap items-center gap-2 mt-3">
+										{experience.skills.map((t) => (
+											<span
+												key={t}
+												className="font-mono text-xs bg-secondary border border-border px-2 py-0.5 rounded text-muted-foreground"
+											>
+												{t}
+											</span>
+										))}
+										<span className="font-mono text-[11px] text-primary ml-auto opacity-0 group-hover:opacity-90 ease-out transition-opacity">
+											Visit site
+										</span>
+									</div>
+								</a>
 							</div>
 						</div>
 					))}

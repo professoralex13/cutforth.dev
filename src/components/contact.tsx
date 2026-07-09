@@ -34,8 +34,8 @@ export default function Contact() {
 				</div>
 				<div className="space-y-8">
 					<p className="text-muted-foreground font-[Figtree,sans-serif] text-lg leading-relaxed max-w-md">
-						Open to interesting work, collaborations, and conversations. Feel
-						free to reach out via email or find me on LinkedIn and GitHub.
+						Open to collaborations and conversations. Feel free to reach out via
+						email or find me on LinkedIn and GitHub.
 					</p>
 					<div className="space-y-4">
 						{CONTACTS.map((link) => (
