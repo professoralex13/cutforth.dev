@@ -11,20 +11,24 @@ const ROLES = [
 
 export default function Hero() {
 	return (
+		// biome-ignore lint/a11y/noStaticElementInteractions: Aesthetic interaction
 		<section
 			id="hero"
-			className="relative min-h-screen flex flex-col justify-center px-6 pt-14 overflow-hidden"
-		>
-			{/* Background Grid */}
-			<div
-				className="absolute inset-0 opacity-[0.03] pointer-events-none"
-				style={{
-					backgroundImage:
-						"linear-gradient(rgba(82,221,180,1) 1px, transparent 1px), linear-gradient(90deg, rgba(82,221,180,1) 1px, transparent 1px)",
-					backgroundSize: "48px 48px",
-				}}
-			/>
+			role="presentation"
+			className="relative min-h-screen flex flex-col justify-center px-6 pt-14 overflow-hidden grid-backdrop"
+			onMouseMove={(e) => {
+				// Interaction for hoverable grid effect
+				const rect = e.currentTarget.getBoundingClientRect();
 
+				// Subtract element offsets from absolute mouse positions
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+
+				// Hand off the calculated coordinates directly to CSS variables
+				e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+				e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+			}}
+		>
 			<div className="max-w-5xl mx-auto w-full relative">
 				<div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center">
 					<div>
@@ -57,7 +61,7 @@ export default function Hero() {
 							</a>
 							<a
 								href="#projects"
-								className="border border-border text-foreground font-mono text-sm px-5 py-2.5 rounded hover:border-primary/50 hover:text-primary transition-colors"
+								className="bg-background border border-border text-foreground font-mono text-sm px-5 py-2.5 rounded hover:border-primary/50 hover:text-primary transition-colors"
 							>
 								See my work
 							</a>

@@ -125,6 +125,10 @@
 @layer base {
 	* {
 		@apply border-border outline-ring/50 scroll-smooth;
+
+		cursor:
+			url("cursor.svg") 4 4,
+			pointer;
 	}
 
 	body {
@@ -180,5 +184,42 @@
 		font-size: var(--text-base);
 		font-weight: var(--font-weight-normal);
 		line-height: 1.5;
+	}
+
+	.grid-backdrop {
+		@apply absolute inset-0;
+
+		background-image:
+			linear-gradient(rgba(82, 221, 180, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(82, 221, 180, 0.03) 1px, transparent 1px);
+		background-size: 48px 48px;
+	}
+
+	.grid-backdrop::before {
+		@apply absolute inset-0 transition-opacity;
+		content: "";
+
+		/* Match the grid pattern, but brighter, then reveal it with a radial mask. */
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+		background-size: 48px 48px;
+
+		mask-image: radial-gradient(
+			300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+			rgba(0, 0, 0, 1),
+			transparent 80%
+		);
+		-webkit-mask-image: radial-gradient(
+			300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+			rgba(0, 0, 0, 1),
+			transparent 80%
+		);
+
+		opacity: 0;
+	}
+
+	.grid-backdrop:hover::before {
+		opacity: 1;
 	}
 }
