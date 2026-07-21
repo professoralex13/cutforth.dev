@@ -34,7 +34,10 @@ const EXPERIENCE = [
 
 export default function Experience() {
 	return (
-		<section id="experience" className="py-28 px-6 border-t border-border">
+		<section
+			id="experience"
+			className="py-28 px-6 border-t border-border overflow-x-hidden"
+		>
 			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 slide-enter top">
 				<div>
 					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">

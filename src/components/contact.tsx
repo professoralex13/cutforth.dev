@@ -22,7 +22,10 @@ const CONTACTS = [
 
 export default function Contact() {
 	return (
-		<section id="contact" className="py-28 px-6 border-t border-border">
+		<section
+			id="contact"
+			className="py-28 px-6 border-t border-border overflow-x-hidden"
+		>
 			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
 				<div className="slide-enter left">
 					<p className="font-mono text-primary text-xs tracking-[0.25em] uppercase mb-3">

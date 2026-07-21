@@ -65,7 +65,7 @@ export default function Skills() {
 	return (
 		<section
 			id="skills"
-			className="py-28 px-6 border-t border-border bg-secondary/30"
+			className="py-28 px-6 border-t border-border bg-secondary/30 overflow-x-hidden"
 		>
 			<div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 slide-enter right">
 				<div>
