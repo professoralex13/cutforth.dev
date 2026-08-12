@@ -70,6 +70,12 @@ export default function Navbar() {
 				</ul>
 				<div className="hidden md:flex items-center gap-7">
 					<a
+						href="/portfolio"
+						className="font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-primary transition-colors"
+					>
+						portfolio
+					</a>
+					<a
 						href="https://github.com/professoralex13"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -111,6 +117,12 @@ export default function Navbar() {
 						</a>
 					))}
 					<div className="flex gap-4 pt-2">
+						<a
+							href="/portfolio"
+							className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-1"
+						>
+							portfolio
+						</a>
 						<a
 							href="https://github.com/professoralex13"
 							target="_blank"

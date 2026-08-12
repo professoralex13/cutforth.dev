@@ -54,16 +54,16 @@ export default function Hero() {
 						</p>
 						<div className="mt-10 flex gap-4">
 							<a
-								href="#contact"
+								href="/portfolio"
 								className="bg-primary text-primary-foreground font-mono text-sm px-5 py-2.5 rounded hover:opacity-90 transition-opacity font-semibold"
 							>
-								Get in touch
+								Portfolio
 							</a>
 							<a
-								href="#projects"
+								href="#contact"
 								className="bg-background border border-border text-foreground font-mono text-sm px-5 py-2.5 rounded hover:border-primary/50 hover:text-primary transition-colors"
 							>
-								See my work
+								Get in touch
 							</a>
 						</div>
 					</div>
