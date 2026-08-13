@@ -6,6 +6,7 @@ tags: [Embedded Systems, Rust, KiCad]
 blurb: Miniature wearable electronics platform designed to support cosplayers with hearing difficulties while in costume
 image: /images/cosplaycore.png
 source: https://github.com/professoralex13/CosplayCore
+home: true
 ---
 
 ## Overview

@@ -7,6 +7,7 @@ export type PortfolioMarkdownPage = {
 	image?: string;
 	source?: string;
 	order?: number;
+	home: boolean;
 	content: string;
 };
 
@@ -53,7 +54,10 @@ function toSlug(path: string) {
 	return path.replace("./portfolio/", "").replace(/\.md$/, "");
 }
 
-function createPortfolioPage(slug: string, rawMarkdown: string) {
+function createPortfolioPage(
+	slug: string,
+	rawMarkdown: string,
+): PortfolioMarkdownPage {
 	const { metadata, content } = parseFrontmatter(rawMarkdown);
 
 	return {
@@ -63,10 +67,10 @@ function createPortfolioPage(slug: string, rawMarkdown: string) {
 		tags: Array.isArray(metadata.tags) ? metadata.tags : undefined,
 		blurb: typeof metadata.blurb === "string" ? metadata.blurb : undefined,
 		image: typeof metadata.image === "string" ? metadata.image : undefined,
-		link: typeof metadata.link === "string" ? metadata.link : undefined,
 		source: typeof metadata.source === "string" ? metadata.source : undefined,
 		order:
 			typeof metadata.order === "string" ? Number(metadata.order) : undefined,
+		home: typeof metadata.home === "string" ? Boolean(metadata.home) : false,
 		content,
 	};
 }

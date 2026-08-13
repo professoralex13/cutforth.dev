@@ -5,6 +5,7 @@ period: 2021 - 2023
 tags: [TypeScript, React, SVG, Canvas]
 blurb: Avionics GUI components, ARINC 424 flight planning, and a canvas-based aircraft map for a high-fidelity Airbus A220 simulation
 image: /images/synaptic-airport-map.webp
+home: true
 ---
 
 ## Overview
