@@ -1,8 +1,9 @@
-import { ExternalLink } from "lucide-react";
-import { PROJECTS } from "../data/projects";
+import { getPortfolioProjects } from "../content/portfolio";
 import { GithubIcon } from "../icons/Github";
 
 export default function Projects() {
+	const projects = getPortfolioProjects();
+
 	return (
 		<section
 			id="projects"
@@ -24,10 +25,11 @@ export default function Projects() {
 					</a>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-					{PROJECTS.map((p) => (
-						<div
+					{projects.map((p) => (
+						<a
 							key={p.title}
-							className="group bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors duration-200"
+							href={`/portfolio/${p.slug}`}
+							className="block group bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors duration-200"
 						>
 							<div className="flex items-start justify-between gap-4 mb-3">
 								<div>
@@ -50,17 +52,6 @@ export default function Projects() {
 											<GithubIcon size={16} />
 										</a>
 									)}
-									{p.link && (
-										<a
-											href={p.link}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-muted-foreground hover:text-primary transition-colors"
-											aria-label="Live site"
-										>
-											<ExternalLink size={16} />
-										</a>
-									)}
 								</div>
 							</div>
 							<p className="text-sm text-muted-foreground font-[Figtree,sans-serif] leading-relaxed mb-4">
@@ -76,7 +67,7 @@ export default function Projects() {
 									</span>
 								))}
 							</div>
-						</div>
+						</a>
 					))}
 				</div>
 			</div>

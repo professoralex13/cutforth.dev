@@ -1,9 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "../data/projects";
+import { getPortfolioProjects } from "../content/portfolio";
 import { GithubIcon } from "../icons/Github";
 import { LinkedinIcon } from "../icons/Linkedin";
 
 export default function PortfolioPage() {
+	const projects = getPortfolioProjects();
+
 	return (
 		<div className="min-h-screen bg-background text-foreground">
 			<header className="sticky top-0 z-30 backdrop-blur-sm bg-background/90 border-b border-border">
@@ -49,7 +51,7 @@ export default function PortfolioPage() {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-					{PROJECTS.map((project, index) => (
+					{projects.map((project, index) => (
 						<a
 							key={project.slug}
 							href={`/portfolio/${project.slug}`}

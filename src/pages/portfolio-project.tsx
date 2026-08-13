@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
-import { PROJECTS } from "../data/projects";
+import ReactMarkdown from "react-markdown";
+import { getPortfolioMarkdown } from "../content/portfolio";
 
 type PortfolioProjectPageProps = {
 	slug: string;
@@ -8,9 +9,9 @@ type PortfolioProjectPageProps = {
 export default function PortfolioProjectPage({
 	slug,
 }: PortfolioProjectPageProps) {
-	const project = PROJECTS.find((item) => item.slug === slug);
+	const markdown = getPortfolioMarkdown(slug);
 
-	if (!project) {
+	if (!markdown) {
 		return (
 			<div className="min-h-screen bg-background text-foreground px-6 py-20">
 				<div className="max-w-3xl mx-auto">
@@ -43,12 +44,28 @@ export default function PortfolioProjectPage({
 					Back to Portfolio
 				</a>
 				<h1 className="font-mono text-3xl md:text-5xl leading-none mt-8">
-					{project.title}
+					{markdown.title ?? slug}
 				</h1>
-				<p className="mt-6 text-muted-foreground font-[Figtree,sans-serif] leading-relaxed max-w-prose">
-					This dedicated project page is intentionally a placeholder so you can
-					implement the full case study content manually.
-				</p>
+				{(markdown.period || markdown.tags?.length) && (
+					<div className="mt-5 flex flex-wrap items-center gap-2">
+						{markdown.period && (
+							<span className="font-mono text-xs text-muted-foreground">
+								{markdown.period}
+							</span>
+						)}
+						{markdown.tags?.map((tag) => (
+							<span
+								key={tag}
+								className="font-mono text-xs bg-secondary border border-border px-2 py-0.5 rounded text-muted-foreground"
+							>
+								{tag}
+							</span>
+						))}
+					</div>
+				)}
+				<article className="portfolio-prose mt-10">
+					<ReactMarkdown>{markdown.content}</ReactMarkdown>
+				</article>
 			</div>
 		</div>
 	);
