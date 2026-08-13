@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { getPortfolioProjects } from "../content/portfolio";
 import { GithubIcon } from "../icons/Github";
 
@@ -26,12 +27,17 @@ export default function Projects() {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 					{projects.map((p) => (
-						<a
+						<article
 							key={p.title}
-							href={`/portfolio/${p.slug}`}
-							className="block group bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors duration-200"
+							className="group relative bg-card border border-border rounded-lg p-6 hover:border-primary/30 transition-colors ease-out"
 						>
-							<div className="flex items-start justify-between gap-4 mb-3">
+							{/** biome-ignore lint/a11y/useAnchorContent: aria-label is populated, biome doesen't seem to recognise that */}
+							<a
+								href={`/portfolio/${p.slug}`}
+								className="absolute inset-0 z-10"
+								aria-label={`View ${p.title}`}
+							/>
+							<div className="mb-3 pr-6 pointer-events-none">
 								<div>
 									<h3 className="font-mono text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
 										{p.title}
@@ -40,24 +46,11 @@ export default function Projects() {
 										{p.period}
 									</p>
 								</div>
-								<div className="flex gap-3 shrink-0">
-									{p.source && (
-										<a
-											href={p.source}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-muted-foreground hover:text-foreground transition-colors"
-											aria-label="Source code"
-										>
-											<GithubIcon size={16} />
-										</a>
-									)}
-								</div>
 							</div>
-							<p className="text-sm text-muted-foreground font-[Figtree,sans-serif] leading-relaxed mb-4">
+							<p className="text-sm text-muted-foreground font-[Figtree,sans-serif] leading-relaxed mb-4 pointer-events-none">
 								{p.blurb}
 							</p>
-							<div className="flex flex-wrap gap-2">
+							<div className="flex flex-wrap gap-2 pr-8 pointer-events-none">
 								{p.tags?.map((tag) => (
 									<span
 										key={tag}
@@ -67,7 +60,22 @@ export default function Projects() {
 									</span>
 								))}
 							</div>
-						</a>
+
+							<span className="absolute bottom-5 right-5 font-mono text-[11px] text-primary opacity-0 group-hover:opacity-90 transition-opacity ease-out">
+								Read More
+							</span>
+							{p.source && (
+								<a
+									href={p.source}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="absolute top-5 right-5 z-20 text-muted-foreground hover:text-primary transition-colors"
+									aria-label="Source code"
+								>
+									<GithubIcon size={16} />
+								</a>
+							)}
+						</article>
 					))}
 				</div>
 			</div>
