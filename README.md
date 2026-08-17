@@ -10,5 +10,4 @@ This is also an experiment in vibecoding. The initial design and code was genera
 The content is written by me, I ain't gonna use AI for everything. I also wrote this readme file on my own because I know what I'm doing.
 
 ## How?
-The website uses Typescript React, using Vite as the build tool.
-
+The website uses NextJS and Typescript. It was originally built with vite, but was migrated to nextjs to support multiple pages with static rendering.
