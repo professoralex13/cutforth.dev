@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { getPortfolioMarkdown, getPortfolioSlugs } from "@/content/portfolio";
@@ -13,6 +14,13 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+
+export const metadata: Metadata = {
+	robots: {
+		index: false,
+		follow: false,
+	},
+};
 
 export default async function Page({ params }: PortfolioProjectRouteProps) {
 	const { slug } = await params;
