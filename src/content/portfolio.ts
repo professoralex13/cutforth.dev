@@ -1,3 +1,8 @@
+import "server-only";
+
+import { readdirSync, readFileSync } from "node:fs";
+import path from "node:path";
+
 export type PortfolioMarkdownPage = {
 	slug: string;
 	title?: string;
@@ -11,11 +16,12 @@ export type PortfolioMarkdownPage = {
 	content: string;
 };
 
-const markdownFiles = import.meta.glob<string>("./portfolio/*.md", {
-	eager: true,
-	query: "?raw",
-	import: "default",
-});
+const portfolioDirectory = path.join(
+	process.cwd(),
+	"src",
+	"content",
+	"portfolio",
+);
 
 function parseFrontmatter(markdown: string) {
 	const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
@@ -50,8 +56,12 @@ function parseFrontmatter(markdown: string) {
 	return { metadata, content: markdown.slice(match[0].length) };
 }
 
-function toSlug(path: string) {
-	return path.replace("./portfolio/", "").replace(/\.md$/, "");
+function parseBoolean(value: string | undefined) {
+	if (!value) {
+		return false;
+	}
+
+	return value.toLowerCase() === "true";
 }
 
 function createPortfolioPage(
@@ -69,29 +79,50 @@ function createPortfolioPage(
 		image: typeof metadata.image === "string" ? metadata.image : undefined,
 		source: typeof metadata.source === "string" ? metadata.source : undefined,
 		order:
-			typeof metadata.order === "string" ? Number(metadata.order) : undefined,
-		home: typeof metadata.home === "string" ? Boolean(metadata.home) : false,
+			typeof metadata.order === "string" &&
+			!Number.isNaN(Number(metadata.order))
+				? Number(metadata.order)
+				: undefined,
+		home: parseBoolean(
+			typeof metadata.home === "string" ? metadata.home : undefined,
+		),
 		content,
 	};
+}
+
+function readMarkdownFiles() {
+	const fileNames = readdirSync(portfolioDirectory).filter((file) =>
+		file.endsWith(".md"),
+	);
+
+	return fileNames.map((fileName) => {
+		const slug = fileName.replace(/\.md$/, "");
+		const filePath = path.join(portfolioDirectory, fileName);
+		const rawMarkdown = readFileSync(filePath, "utf8");
+
+		return createPortfolioPage(slug, rawMarkdown);
+	});
+}
+
+export function getPortfolioSlugs() {
+	return readMarkdownFiles().map((page) => page.slug);
 }
 
 export function getPortfolioMarkdown(
 	slug: string,
 ): PortfolioMarkdownPage | null {
-	const rawMarkdown = markdownFiles[`./portfolio/${slug}.md`];
+	const filePath = path.join(portfolioDirectory, `${slug}.md`);
 
-	if (!rawMarkdown) {
+	try {
+		const rawMarkdown = readFileSync(filePath, "utf8");
+		return createPortfolioPage(slug, rawMarkdown);
+	} catch {
 		return null;
 	}
-
-	return createPortfolioPage(slug, rawMarkdown);
 }
 
 export function getPortfolioProjects() {
-	return Object.entries(markdownFiles)
-		.map(([path, rawMarkdown]) =>
-			createPortfolioPage(toSlug(path), rawMarkdown),
-		)
+	return readMarkdownFiles()
 		.filter((project) => project.title && project.blurb)
 		.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }

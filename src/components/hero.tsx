@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDown } from "lucide-react";
 import Headshot from "../assets/headshot.jpg";
 import TerminalRewrite from "./terminal-rewrite";
@@ -75,7 +77,7 @@ export default function Hero() {
 							{/* Photo frame */}
 							<div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border border-primary/20 bg-secondary flex items-center justify-center">
 								<img
-									src={Headshot}
+									src={Headshot.src}
 									alt="Alex Cutforth"
 									className="w-full h-full object-cover"
 								/>
