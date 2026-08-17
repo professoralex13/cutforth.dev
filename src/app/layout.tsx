@@ -73,12 +73,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(personStructuredData),
-					}}
-				/>
+				<script type="application/ld+json">
+					{JSON.stringify(personStructuredData)}
+				</script>
 				{children}
 			</body>
 		</html>
