@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import { getPortfolioProjects } from "../content/portfolio";
 import { GithubIcon } from "../icons/Github";
 
