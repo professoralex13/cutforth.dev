@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { getPortfolioMarkdown, getPortfolioSlugs } from "@/content/portfolio";
 import { GithubIcon } from "@/icons/Github";
 
@@ -75,7 +76,9 @@ export default async function Page({ params }: PortfolioProjectRouteProps) {
 					</div>
 				)}
 				<article className="portfolio-prose mt-10">
-					<ReactMarkdown>{markdown.content}</ReactMarkdown>
+					<ReactMarkdown remarkPlugins={[remarkGfm]}>
+						{markdown.content}
+					</ReactMarkdown>
 				</article>
 			</div>
 		</div>
