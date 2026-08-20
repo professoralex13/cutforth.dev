@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="border-t border-border py-8 px-6 relative">
+		<footer className="border-t border-border py-8 px-6 relative space-y-2">
 			<div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
 				<p className="font-mono text-xs text-muted-foreground">
 					cutforth.dev — Alex Cutforth
@@ -10,7 +10,7 @@ export default function Footer() {
 				</p>
 			</div>
 
-			<p className="absolute left-2 bottom-2 font-mono text-xs text-muted-foreground">
+			<p className="font-mono text-xs text-muted-foreground max-w-5xl mx-auto">
 				DISCLAIMER: I did not design this website, AI did. I'm not a designer
 				lol, just a developer
 			</p>
