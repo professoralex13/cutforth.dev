@@ -2,7 +2,7 @@
 order: 7
 title: Tennis Scoreboard
 period: Nov 2025 - Present
-tags: [Embedded Systems, PCBs, Manufacturing consideration, Rust]
+tags: [Rust, PCBs, Manufacturing considerations]
 blurb: Designed an easily manufacturable scoreboard using addressable LEDs, bike battery power systems, and ESP32 for wireless control
 image: /images/scoreboard.jpg
 source: https://github.com/professoralex13/tennis-scoreboard

@@ -1,10 +1,8 @@
-import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPortfolioMarkdown, getPortfolioSlugs } from "@/content/portfolio";
-import { GithubIcon } from "@/icons/Github";
 
 type PortfolioProjectRouteProps = {
 	params: Promise<{ slug: string }>;
@@ -35,30 +33,10 @@ export default async function Page({ params }: PortfolioProjectRouteProps) {
 	return (
 		<div className="min-h-screen bg-background text-foreground px-6 py-20">
 			<div className="max-w-5xl mx-auto px-6">
-				<header className="flex items-center justify-between">
-					<a
-						href="/portfolio"
-						className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors"
-					>
-						<ArrowLeft size={14} />
-						Back to Portfolio
-					</a>
-					{markdown.source && (
-						<a
-							href={markdown.source}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="View source code on GitHub"
-							className="text-muted-foreground hover:text-foreground transition-colors"
-						>
-							<GithubIcon size={18} />
-						</a>
-					)}
-				</header>
 				<h1 className="font-mono text-3xl md:text-5xl leading-none mt-8">
 					{markdown.title ?? slug}
 				</h1>
-				{(markdown.period || markdown.tags?.length) && (
+				{(markdown.period || markdown.tags?.length || markdown.source) && (
 					<div className="mt-5 flex flex-wrap items-center gap-2">
 						{markdown.period && (
 							<span className="font-mono text-xs text-muted-foreground">
@@ -73,6 +51,17 @@ export default async function Page({ params }: PortfolioProjectRouteProps) {
 								{tag}
 							</span>
 						))}
+						{markdown.source && (
+							<a
+								href={markdown.source}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="View source repository"
+								className="ml-auto font-mono text-[11px] tracking-[0.2em] uppercase text-muted-foreground hover:text-primary transition-colors"
+							>
+								Source
+							</a>
+						)}
 					</div>
 				)}
 				<article className="portfolio-prose mt-10">

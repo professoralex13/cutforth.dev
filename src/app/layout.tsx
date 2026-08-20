@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Navbar from "@/components/navbar";
 import "../index.css";
 
 export const metadata: Metadata = {
@@ -76,6 +77,7 @@ export default function RootLayout({
 				<script type="application/ld+json">
 					{JSON.stringify(personStructuredData)}
 				</script>
+				<Navbar />
 				{children}
 			</body>
 		</html>

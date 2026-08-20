@@ -2,8 +2,8 @@
 order: 2
 title: Vex Robotics
 period: 2019 - 2026
-tags: [Rust, C++, Mechanical Design, Team Management]
-blurb: Competitive robotics work spanning mechanical design, manufacturing, and C++/Rust firmware in a multidisciplinary team
+tags: [C++, Mechanical Design, Team Management]
+blurb: Competitive robotics work spanning mechanical design, manufacturing, and C++ firmware in a multidisciplinary team
 image: /images/vex/pb-robot.png
 home: true
 ---

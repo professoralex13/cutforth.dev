@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useScrollSpy } from "../hooks/use-scroll-spy";
 import { GithubIcon } from "../icons/Github";
@@ -19,6 +20,10 @@ export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
 
 	const [menuOpen, setMenuOpen] = useState(false);
+	const pathname = usePathname();
+	const isHomePage = pathname === "/";
+	const isPortfolioIndexPage =
+		pathname === "/portfolio" || pathname === "/portfolio/";
 
 	const activeSection = useScrollSpy([
 		"hero",
@@ -43,37 +48,44 @@ export default function Navbar() {
 		>
 			<nav className="flex items-center justify-between max-w-5xl mx-auto h-14 px-6">
 				<a
-					href="#hero"
+					href={isHomePage ? "#hero" : "/"}
 					className={clsx(
 						"font-mono text-sm font-semibold tracking-widest uppercase hover:opacity-80 transition-opacity",
-						activeSection === "hero"
+						isHomePage && activeSection === "hero"
 							? " text-primary"
 							: "text-muted-foreground hover:text-foreground",
 					)}
 				>
 					cutforth.dev
 				</a>
-				<ul className="md:flex items-center gap-7 hidden">
-					{NAV_LINKS.map((link) => (
-						<li key={link.href}>
-							<a
-								href={link.href}
-								className={clsx(
-									"font-mono text-xs tracking-wider uppercase transition-colors ",
-									activeSection === link.href.slice(1)
-										? "text-primary"
-										: "text-muted-foreground hover:text-foreground",
-								)}
-							>
-								{link.label}
-							</a>
-						</li>
-					))}
-				</ul>
+				{isHomePage && (
+					<ul className="md:flex items-center gap-7 hidden">
+						{NAV_LINKS.map((link) => (
+							<li key={link.href}>
+								<a
+									href={link.href}
+									className={clsx(
+										"font-mono text-xs tracking-wider uppercase transition-colors ",
+										activeSection === link.href.slice(1)
+											? "text-primary"
+											: "text-muted-foreground hover:text-foreground",
+									)}
+								>
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				)}
 				<div className="hidden md:flex items-center gap-7">
 					<a
 						href="/portfolio"
-						className="font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-primary transition-colors"
+						className={clsx(
+							"font-mono text-xs tracking-wider uppercase transition-colors",
+							isPortfolioIndexPage
+								? "text-primary"
+								: "text-muted-foreground hover:text-primary",
+						)}
 					>
 						portfolio
 					</a>
@@ -90,7 +102,7 @@ export default function Navbar() {
 						href="https://www.linkedin.com/in/alex-cutforth-5133b4299/"
 						target="_blank"
 						rel="noopener noreferrer"
-						aria-label="GitHub"
+						aria-label="LinkedIn"
 						className="text-muted-foreground hover:text-foreground transition-colors"
 					>
 						<LinkedinIcon />
@@ -108,20 +120,27 @@ export default function Navbar() {
 			{/* Hamburger Menu */}
 			{menuOpen && (
 				<div className="md:hidden bg-background/98 border-b border-border px-6 pb-5 pt-2 flex flex-col gap-3">
-					{NAV_LINKS.map((l) => (
-						<a
-							key={l.href}
-							href={l.href}
-							onClick={() => setMenuOpen(false)}
-							className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-1"
-						>
-							{l.label}
-						</a>
-					))}
+					{isHomePage &&
+						NAV_LINKS.map((l) => (
+							<a
+								key={l.href}
+								href={l.href}
+								onClick={() => setMenuOpen(false)}
+								className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-1"
+							>
+								{l.label}
+							</a>
+						))}
 					<div className="flex gap-4 pt-2">
 						<a
 							href="/portfolio"
-							className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors py-1"
+							onClick={() => setMenuOpen(false)}
+							className={clsx(
+								"font-mono text-sm uppercase tracking-wider transition-colors py-1",
+								isPortfolioIndexPage
+									? "text-primary"
+									: "text-muted-foreground hover:text-foreground",
+							)}
 						>
 							portfolio
 						</a>
