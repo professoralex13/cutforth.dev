@@ -1,10 +1,11 @@
 ---
-order: 3
+order: 2
 title: Vex Robotics
 period: 2019 - 2026
 tags: [Rust, C++, Mechanical Design, Team Management]
 blurb: Competitive robotics work spanning mechanical design, manufacturing, and C++/Rust firmware in a multidisciplinary team
 image: /images/vex/pb-robot.png
+home: true
 ---
 
 Vex Robotics isn't a singular project per se, but rather an extracurricular activity I have taken part in throughout my time at high school and university (7 years!). As part of this activity I have taken on both technical, and administrative roles at both my high school robotics club, and university robotics club.

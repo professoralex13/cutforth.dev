@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 6
 title: Synaptic Simulations A220
 period: 2021 - 2023
 tags: [TypeScript, React, SVG, Rust]

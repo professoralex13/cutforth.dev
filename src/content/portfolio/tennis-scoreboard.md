@@ -1,5 +1,5 @@
 ---
-order: 8
+order: 7
 title: Tennis Scoreboard
 period: Nov 2025 - Present
 tags: [Embedded Systems, PCBs, Manufacturing consideration, Rust]

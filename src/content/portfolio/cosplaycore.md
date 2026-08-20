@@ -1,5 +1,5 @@
 ---
-order: 6
+order: 3
 title: CosplayCore
 period: 2025 - Present
 tags: [Embedded Systems, KiCad]

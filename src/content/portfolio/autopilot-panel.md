@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 4
 title: Flight Sim Autopilot Panel
 period: June 2026 - Present
 tags: [PCBs, CAD, Manufacturing considerations]
